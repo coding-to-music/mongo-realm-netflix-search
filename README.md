@@ -1,3 +1,65 @@
+# mongo-realm-netflix-search
+
+MongoFlix - interactive demo for Atlas Search, Atlas App Services, GraphQL and so much more. Atlas Search eWorkshop: MongoFlix - integrate MongoDB Atlas Search, Atlas App Services into your apps.
+
+# 🚀 Javascript full-stack 🚀
+
+https://github.com/coding-to-music/mongo-realm-netflix-search
+
+https://mongo-realm-netflix-search.vercel.app
+
+From / By https://github.com/ppicello/Atlas-Search-eWorkshop
+
+https://application-0-kjasg.mongodbstitch.com/
+
+## Environment variables:
+
+```java
+const { Expo } = require("expo-server-sdk");
+let expo = new Expo({ accessToken: context.values.get("expoKey") });
+
+realm-backend/realm_config.json
+{
+    "config_version": 20210101,
+    "app_id": "mongo-realm-netflix-search-qhlli",
+    "name": "mongo-realm-netflix-search",
+    "location": "US-VA",
+    "deployment_model": "GLOBAL",
+    "environment": "production"
+}
+
+realm-backend/values/expoKey.json
+{
+    "name": "expoKey",
+    "value": "expo",
+    "from_secret": true
+}
+
+realm-backend/data_sources/mongodb-atlas/config.json
+{
+    "name": "mongodb-atlas",
+    "type": "mongodb-atlas",
+    "config": {
+      "clusterName": "Cluster0",
+      "readPreference": "primary",
+      "wireProtocolEnabled": false
+    }
+  }
+
+```
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/mongo-realm-netflix-search.git
+git push -u origin main
+```
+
 # Atlas Search Workshop
 
 MongoFlix - interactive demo for [Atlas Search](https://www.mongodb.com/atlas/search), [Atlas App Services](https://www.mongodb.com/atlas/app-services), [GraphQL](https://docs.mongodb.com/realm/graphql/) and so much more.
@@ -28,25 +90,25 @@ This value will depend on the deployment region of your Atlas app.
 <summary><b>All Steps</b></summary>
 
 1. [Atlas Cluster](#AtlasCluster)
-    1. [Load Sample Data](#LoadSampleData)
+   1. [Load Sample Data](#LoadSampleData)
 1. [Atlas Search Index Creation](#AtlasSearchIndexCreation)
 1. [Create Atlas App Service app](#CreateRealmApp)
-    1. [Realm Activate Anonymous Authentication](#RealmActivateAnonymousAuthentication)
-    1. [Realm Configure Access Rules](#RealmConfigureAccessRules)
-    1. [Realm Generate Schema](#RealmGenerateSchema)
+   1. [Realm Activate Anonymous Authentication](#RealmActivateAnonymousAuthentication)
+   1. [Realm Configure Access Rules](#RealmConfigureAccessRules)
+   1. [Realm Generate Schema](#RealmGenerateSchema)
 1. [Feature 1: Autocomplete](#Feature1Autocomplete)
-    1. [Create Autocomplete Function](#CreateAutocompleteFunction)
-    1. [Implement Autocomplete Function](#ImplementAutocompleteFunction)
-    1. [Create Autocomplete Custom Resolver](#CreateAutocompleteCustomResolver)
+   1. [Create Autocomplete Function](#CreateAutocompleteFunction)
+   1. [Implement Autocomplete Function](#ImplementAutocompleteFunction)
+   1. [Create Autocomplete Custom Resolver](#CreateAutocompleteCustomResolver)
 1. [Feature 2: Highlights and Scoring](#Feature2HighlightsAndScoring)
-    1. [Create Highlights Function](#CreateHighlightsFunction)
-    1. [Implement Highlights Function](#ImplementHighlightsFunction)
-    1. [Create Highlights Custom Resolver](#CreateHighlightsCustomResolver)
+   1. [Create Highlights Function](#CreateHighlightsFunction)
+   1. [Implement Highlights Function](#ImplementHighlightsFunction)
+   1. [Create Highlights Custom Resolver](#CreateHighlightsCustomResolver)
 1. [Feature 3: Facets](#Feature3Facets)
-    1. [Facets Search Index Creation](#FacetsSearchIndexCreation)
-    1. [Create Facets Function](#CreateFacetsFunction)
-    1. [Implement Facets Function](#ImplementFacetsFunction)
-    1. [Create Facets Custom Resolver](#CreateFacetsCustomResolver)
+   1. [Facets Search Index Creation](#FacetsSearchIndexCreation)
+   1. [Create Facets Function](#CreateFacetsFunction)
+   1. [Implement Facets Function](#ImplementFacetsFunction)
+   1. [Create Facets Custom Resolver](#CreateFacetsCustomResolver)
 1. [Realm Static Site Hosting](#RealmStaticSiteHosting)
 
 </details>
@@ -66,9 +128,9 @@ If you choose a region other than Frankfurt you will need to update the endpoint
 
 Here are the settings for the cluster:
 
--   **Cloud Provider & Region**: `AWS, Frankfurt (eu-central-1)`
--   **Cluster Tier**: `MO Sandbox (Shared RAM, 512 MB Storage)`
--   **Cluster Name**: `Cluster0`
+- **Cloud Provider & Region**: `AWS, Frankfurt (eu-central-1)`
+- **Cluster Tier**: `MO Sandbox (Shared RAM, 512 MB Storage)`
+- **Cluster Name**: `Cluster0`
 
 ![Atlas Cluster](/docs/create-shared-cluster.png?raw=true "Atlas Cluster")
 
@@ -96,20 +158,20 @@ Click the Cluster name to open it. In your cluster on **Atlas** click the **Sear
 
 ```json
 {
-    "mappings": {
-        "dynamic": true,
-        "fields": {
-            "title": [
-                {
-                    "dynamic": true,
-                    "type": "document"
-                },
-                {
-                    "type": "autocomplete"
-                }
-            ]
+  "mappings": {
+    "dynamic": true,
+    "fields": {
+      "title": [
+        {
+          "dynamic": true,
+          "type": "document"
+        },
+        {
+          "type": "autocomplete"
         }
+      ]
     }
+  }
 }
 ```
 
@@ -133,14 +195,13 @@ The information should be populated automatically. Make sure to use the same nam
 
 ![Create Realm App Step 1](/docs/welcome-atlas-app-services.png?raw=true "Create Realm App Step 1")
 
-
 ![Create Realm App Step 1.2](/docs/welcome-atlas-app-services.png?raw=true "Create Realm App Step 1.2")
 
 In the following dialog, setup the name of the App, connect it to your newly created cluster and select a local (single region) deployment model. It should be preferable to use the region closest to your cluster region.
 
--   Name: Application-0
--   Cluster: Cluster0
--   Deployment Model: Local
+- Name: Application-0
+- Cluster: Cluster0
+- Deployment Model: Local
 
 To create the app click **Create App Service**.
 
@@ -175,7 +236,6 @@ Select just the **movies** collection, leave the sampling size as default and cl
 This will also generate all the neccessary types and queries for a **GraphQL** schema. Which can be used immediately to access the data through the GraphQL endpoint managed by App Services.
 
 ![Realm Generate Schema](/docs/schema.png?raw=true "Realm Generate Schema")
-
 
 ![Realm Generate Schema](/docs/schema2.png?raw=true "Realm Generate Schema")
 
@@ -235,28 +295,31 @@ Paste the following code into the **Function Editor**:
 
 ```js
 exports = async (title) => {
-    const collection = context.services.get("mongodb-atlas").db("sample_mflix").collection("movies");
-    return await collection
-        .aggregate([
-            {
-                $search: {
-                    autocomplete: {
-                        path: "title",
-                        query: title,
-                        fuzzy: { maxEdits: 1 },
-                    },
-                },
-            },
-            {
-                $project: {
-                    title: 1,
-                },
-            },
-            {
-                $limit: 10,
-            },
-        ])
-        .toArray();
+  const collection = context.services
+    .get("mongodb-atlas")
+    .db("sample_mflix")
+    .collection("movies");
+  return await collection
+    .aggregate([
+      {
+        $search: {
+          autocomplete: {
+            path: "title",
+            query: title,
+            fuzzy: { maxEdits: 1 },
+          },
+        },
+      },
+      {
+        $project: {
+          title: 1,
+        },
+      },
+      {
+        $limit: 10,
+      },
+    ])
+    .toArray();
 };
 ```
 
@@ -276,11 +339,11 @@ We will send a string as input and expect a list of movie objects as output.
 
 #### Input Type
 
--   Input Type: `Scalar Type`, `String`
+- Input Type: `Scalar Type`, `String`
 
 #### Return Type
 
--   Return Type: `Existing Type (List)`, `[Movie]`
+- Return Type: `Existing Type (List)`, `[Movie]`
 
 Click the **Save Draft** button to save the custom resolver.
 
@@ -323,87 +386,90 @@ Paste the following code into the **Function Editor**:
 
 ```js
 exports = async (input) => {
-    const collection = context.services.get("mongodb-atlas").db("sample_mflix").collection("movies");
-    const { term, genres, countries } = input;
-    const searchShould = [];
-    const searchMust = [];
+  const collection = context.services
+    .get("mongodb-atlas")
+    .db("sample_mflix")
+    .collection("movies");
+  const { term, genres, countries } = input;
+  const searchShould = [];
+  const searchMust = [];
 
-    if (term.length > 0) {
-        const termStage = {
-            autocomplete: {
-                path: "title",
-                query: term,
-                fuzzy: { maxEdits: 1.0 },
-                score: {
-                    boost: {
-                        path: "imdb.rating",
-                        undefined: 1,
-                    },
-                },
-            },
-        };
-        searchMust.push(termStage);
-
-        const plotStage = {
-            text: {
-                query: term,
-                path: "plot",
-            },
-        };
-        searchShould.push(plotStage);
-    }
-
-    if (genres.length > 0) {
-        const genresStage = {
-            text: {
-                query: genres,
-                path: "genres",
-            },
-        };
-        searchMust.push(genresStage);
-    }
-
-    if (countries.length > 0) {
-        const countryStage = {
-            text: {
-                query: countries,
-                path: "countries",
-            },
-        };
-        searchMust.push(countryStage);
-    }
-
-    const searchQuery = [
-        {
-            $search: {
-                compound: {
-                    should: searchShould,
-                    must: searchMust,
-                },
-                highlight: { path: ["title", "genres", "countries", "plot"] },
-            },
+  if (term.length > 0) {
+    const termStage = {
+      autocomplete: {
+        path: "title",
+        query: term,
+        fuzzy: { maxEdits: 1.0 },
+        score: {
+          boost: {
+            path: "imdb.rating",
+            undefined: 1,
+          },
         },
-        {
-            $project: {
-                _id: 1,
-                title: 1,
-                poster: 1,
-                cast: 1,
-                directors: 1,
-                plot: 1,
-                fullplot: 1,
-                year: 1,
-                genres: 1,
-                countries: 1,
-                imdb: 1,
-                score: { $meta: "searchScore" },
-                highlights: { $meta: "searchHighlights" },
-            },
-        },
-        { $limit: 20 },
-    ];
+      },
+    };
+    searchMust.push(termStage);
 
-    return await collection.aggregate(searchQuery).toArray();
+    const plotStage = {
+      text: {
+        query: term,
+        path: "plot",
+      },
+    };
+    searchShould.push(plotStage);
+  }
+
+  if (genres.length > 0) {
+    const genresStage = {
+      text: {
+        query: genres,
+        path: "genres",
+      },
+    };
+    searchMust.push(genresStage);
+  }
+
+  if (countries.length > 0) {
+    const countryStage = {
+      text: {
+        query: countries,
+        path: "countries",
+      },
+    };
+    searchMust.push(countryStage);
+  }
+
+  const searchQuery = [
+    {
+      $search: {
+        compound: {
+          should: searchShould,
+          must: searchMust,
+        },
+        highlight: { path: ["title", "genres", "countries", "plot"] },
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        title: 1,
+        poster: 1,
+        cast: 1,
+        directors: 1,
+        plot: 1,
+        fullplot: 1,
+        year: 1,
+        genres: 1,
+        countries: 1,
+        imdb: 1,
+        score: { $meta: "searchScore" },
+        highlights: { $meta: "searchHighlights" },
+      },
+    },
+    { $limit: 20 },
+  ];
+
+  return await collection.aggregate(searchQuery).toArray();
 };
 ```
 
@@ -419,132 +485,132 @@ We will send a string as input and expect a list of custom movie objects, contai
 
 #### Input Type
 
--   Input Type: `Custom Type`
+- Input Type: `Custom Type`
 
 ```json
 {
-    "type": "object",
-    "title": "FilteredMoviesInput",
-    "properties": {
-        "term": {
-            "bsonType": "string"
-        },
-        "genres": {
-            "bsonType": "array",
-            "items": {
-                "bsonType": "string"
-            }
-        },
-        "countries": {
-            "bsonType": "array",
-            "items": {
-                "bsonType": "string"
-            }
-        }
+  "type": "object",
+  "title": "FilteredMoviesInput",
+  "properties": {
+    "term": {
+      "bsonType": "string"
+    },
+    "genres": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "string"
+      }
+    },
+    "countries": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "string"
+      }
     }
+  }
 }
 ```
 
 #### Return Type
 
--   Return Type: `Custom Type`
+- Return Type: `Custom Type`
 
 ```json
 {
-    "items": {
-        "bsonType": "object",
-        "properties": {
-            "_id": {
-                "bsonType": "objectId"
-            },
-            "cast": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "string"
-                }
-            },
-            "countries": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "string"
-                }
-            },
-            "directors": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "string"
-                }
-            },
-            "fullplot": {
-                "bsonType": "string"
-            },
-            "genres": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "string"
-                }
-            },
-            "highlights": {
-                "bsonType": "array",
-                "items": {
-                    "bsonType": "object",
-                    "properties": {
-                        "path": {
-                            "bsonType": "string"
-                        },
-                        "score": {
-                            "bsonType": "double"
-                        },
-                        "texts": {
-                            "bsonType": "array",
-                            "items": {
-                                "bsonType": "object",
-                                "properties": {
-                                    "type": {
-                                        "bsonType": "string"
-                                    },
-                                    "value": {
-                                        "bsonType": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "imdb": {
-                "bsonType": "object",
-                "properties": {
-                    "id": {
-                        "bsonType": "int"
-                    },
-                    "rating": {
-                        "bsonType": "double"
-                    },
-                    "votes": {
-                        "bsonType": "int"
-                    }
-                }
-            },
-            "plot": {
-                "bsonType": "string"
-            },
-            "poster": {
-                "bsonType": "string"
+  "items": {
+    "bsonType": "object",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "cast": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "countries": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "directors": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "fullplot": {
+        "bsonType": "string"
+      },
+      "genres": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "highlights": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object",
+          "properties": {
+            "path": {
+              "bsonType": "string"
             },
             "score": {
-                "bsonType": "double"
+              "bsonType": "double"
             },
-            "title": {
-                "bsonType": "string"
-            },
-            "year": {
-                "bsonType": "int"
+            "texts": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "properties": {
+                  "type": {
+                    "bsonType": "string"
+                  },
+                  "value": {
+                    "bsonType": "string"
+                  }
+                }
+              }
             }
+          }
         }
-    },
-    "title": "FilteredMovies",
-    "type": "array"
+      },
+      "imdb": {
+        "bsonType": "object",
+        "properties": {
+          "id": {
+            "bsonType": "int"
+          },
+          "rating": {
+            "bsonType": "double"
+          },
+          "votes": {
+            "bsonType": "int"
+          }
+        }
+      },
+      "plot": {
+        "bsonType": "string"
+      },
+      "poster": {
+        "bsonType": "string"
+      },
+      "score": {
+        "bsonType": "double"
+      },
+      "title": {
+        "bsonType": "string"
+      },
+      "year": {
+        "bsonType": "int"
+      }
+    }
+  },
+  "title": "FilteredMovies",
+  "type": "array"
 }
 ```
 
@@ -620,31 +686,34 @@ Paste the following code into the **Function Editor**:
 
 ```js
 exports = async (arg) => {
-    const collection = context.services.get("mongodb-atlas").db("sample_mflix").collection("movies");
+  const collection = context.services
+    .get("mongodb-atlas")
+    .db("sample_mflix")
+    .collection("movies");
 
-    return await collection
-        .aggregate([
-            {
-                $searchMeta: {
-                    index: "facets",
-                    facet: {
-                        operator: {
-                            range: {
-                                path: "year",
-                                gte: 1900,
-                            },
-                        },
-                        facets: {
-                            genresFacet: {
-                                type: "string",
-                                path: "genres",
-                            },
-                        },
-                    },
-                },
+  return await collection
+    .aggregate([
+      {
+        $searchMeta: {
+          index: "facets",
+          facet: {
+            operator: {
+              range: {
+                path: "year",
+                gte: 1900,
+              },
             },
-        ])
-        .toArray();
+            facets: {
+              genresFacet: {
+                type: "string",
+                path: "genres",
+              },
+            },
+          },
+        },
+      },
+    ])
+    .toArray();
 };
 ```
 
@@ -660,48 +729,48 @@ We won't send input to this query and expect a list of custom objects representi
 
 #### Input Type
 
--   Input Type: `None`
+- Input Type: `None`
 
 #### Return Type
 
--   Return Type: `Custom Type`
+- Return Type: `Custom Type`
 
 ```json
 {
-    "title": "GenresMeta",
-    "type": "array",
-    "items": {
+  "title": "GenresMeta",
+  "type": "array",
+  "items": {
+    "bsonType": "object",
+    "properties": {
+      "count": {
+        "bsonType": "double"
+      },
+      "facet": {
         "bsonType": "object",
         "properties": {
-            "count": {
-                "bsonType": "double"
-            },
-            "facet": {
-                "bsonType": "object",
-                "properties": {
-                    "genresFacet": {
-                        "bsonType": "object",
-                        "properties": {
-                            "buckets": {
-                                "bsonType": "array",
-                                "items": {
-                                    "bsonType": "object",
-                                    "properties": {
-                                        "_id": {
-                                            "bsonType": "string"
-                                        },
-                                        "count": {
-                                            "bsonType": "double"
-                                        }
-                                    }
-                                }
-                            }
-                        }
+          "genresFacet": {
+            "bsonType": "object",
+            "properties": {
+              "buckets": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "properties": {
+                    "_id": {
+                      "bsonType": "string"
+                    },
+                    "count": {
+                      "bsonType": "double"
                     }
+                  }
                 }
+              }
             }
+          }
         }
+      }
     }
+  }
 }
 ```
 

@@ -1,26 +1,32 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "export": "next export"
-    },
-    "dependencies": {
-        "@headlessui/react": "^1.4.3",
-        "@heroicons/react": "^1.0.4",
-        "graphql": "^16.3.0",
-        "graphql-request": "^3.7.0",
-        "next": "latest",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-syntax-highlighter": "^15.5.0",
-        "realm-web": "^1.3.0",
-        "swr": "^1.2.0"
-    },
-    "devDependencies": {
-        "autoprefixer": "^10.2.6",
-        "postcss": "^8.3.5",
-        "tailwindcss": "^2.2.4"
-    }
+  "name": "mongo-realm-netflix-search",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "vercel": "npm run deploy && cd website && vercel --prod",
+    "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=tasktracker-bmumi --include-hosting",
+    "deploy": "git add . && git commit -m Build && git push",
+    "realm:init": "npm run deploy && cd ./realm-backend && realm-cli app init",
+    "deploy:backend": "npm run deploy && cd ./realm-backend && realm-cli push"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.4.3",
+    "@heroicons/react": "^1.0.4",
+    "graphql": "^16.3.0",
+    "graphql-request": "^3.7.0",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-syntax-highlighter": "^15.5.0",
+    "realm-web": "^1.3.0",
+    "swr": "^1.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4"
+  }
 }
