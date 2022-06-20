@@ -1,6 +1,8 @@
 {
     "config_version": 20210101,
+    "app_id": "mongo-realm-netflix-search-gstvq",
     "name": "mongo-realm-netflix-search",
     "location": "US-VA",
-    "deployment_model": "GLOBAL"
+    "deployment_model": "GLOBAL",
+    "environment": "production"
 }
