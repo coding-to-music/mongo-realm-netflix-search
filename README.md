@@ -10,6 +10,8 @@ https://mongo-realm-netflix-search.vercel.app
 
 From / By https://github.com/artemadams/atlas-search-mongoflix
 
+https://atlas-search-mongoflix.vercel.app/
+
 https://github.com/ppicello/Atlas-Search-eWorkshop
 
 https://application-0-kjasg.mongodbstitch.com/
