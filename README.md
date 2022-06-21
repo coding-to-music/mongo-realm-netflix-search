@@ -28,12 +28,7 @@ realm-backend/realm_config.json
     "environment": "production"
 }
 
-realm-backend/values/expoKey.json
-{
-    "name": "expoKey",
-    "value": "expo",
-    "from_secret": true
-}
+# Adjust to match your cluster name
 
 realm-backend/data_sources/mongodb-atlas/config.json
 {
@@ -58,6 +53,23 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:coding-to-music/mongo-realm-netflix-search.git
 git push -u origin main
+```
+
+# package.json scripts call with "npm run X"
+
+```
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "vercel": "npm run deploy && vercel --prod",
+    "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=mongo-realm-netflix-search-gstvq --include-hosting",
+    "deploy": "git add . && git commit -m Build && git push",
+    "realm:init": "npm run deploy && cd ./realm-backend && realm-cli app init",
+    "realm:pull": "npm run deploy && realm-cli pull",
+    "realm:push": "npm run deploy && cd ./realm-backend && realm-cli push"
+
 ```
 
 # Atlas Search Workshop

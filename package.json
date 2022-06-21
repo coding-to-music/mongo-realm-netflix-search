@@ -7,7 +7,7 @@
     "start": "next start",
     "export": "next export",
     "vercel": "npm run deploy && vercel --prod",
-    "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=tasktracker-bmumi --include-hosting",
+    "mongohost": "npm run deploy && npm run build && cp -a ./build/ ./hosting/files && realm-cli push --remote=mongo-realm-netflix-search-gstvq --include-hosting",
     "deploy": "git add . && git commit -m Build && git push",
     "realm:init": "npm run deploy && cd ./realm-backend && realm-cli app init",
     "realm:pull": "npm run deploy && realm-cli pull",
