@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "name": "filteredMovies",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "autocompleteTitle",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "facetsGenres",
+        "private": false,
+        "disable_arg_logs": true
+    }
+]
