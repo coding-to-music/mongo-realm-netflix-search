@@ -8,15 +8,20 @@ https://github.com/coding-to-music/mongo-realm-netflix-search
 
 https://mongo-realm-netflix-search.vercel.app
 
-From / By https://github.com/ppicello/Atlas-Search-eWorkshop
+From / By https://github.com/artemadams/atlas-search-mongoflix
+
+https://github.com/ppicello/Atlas-Search-eWorkshop
 
 https://application-0-kjasg.mongodbstitch.com/
 
 ## Environment variables:
 
 ```java
-const { Expo } = require("expo-server-sdk");
-let expo = new Expo({ accessToken: context.values.get("expoKey") });
+NEXT_PUBLIC_REALM_APP_ID=<APP_ID>
+
+# NEXT_PUBLIC_REALM_BASE_URL=eu-central-1.aws.realm.mongodb.com
+
+NEXT_PUBLIC_REALM_BASE_URL="realm.mongodb.com"
 
 realm-backend/realm_config.json
 {
